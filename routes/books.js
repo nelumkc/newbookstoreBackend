@@ -12,13 +12,12 @@ router.route('/').post(async (req, res) => {
 
   // create a new Book object
   const newBook = await new Book({
-    title: req.body.title,
-    author: req.body.author,
+    bookTitle: req.body.bookTitle,
+    bookAuthor: req.body.bookAuthor,
     description: req.body.description,
   });
 
   console.log(newBook);
-  // save the new object (newBook)
   newBook
     .save()
     .then(() => res.json('Book added!'))
@@ -44,8 +43,8 @@ router.route('/:id').post(async (req, res) => {
   console.log(req.params.id);
   await Book.findById(req.params.id)
     .then((book) => {
-      book.title = req.body.title;
-      book.author = req.body.author;
+      book.bookTitle = req.body.bookTitle;
+      book.bookAuthor = req.body.bookAuthor;
       book.description = req.body.description;
 
       book
